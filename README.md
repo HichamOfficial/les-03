@@ -1,14 +1,25 @@
 # Les 03 — Infra + Ansible
 
-Dit project hoort bij Week 4. Hierin maak ik een test-VM met Terraform en gebruik ik Ansible om ermee te praten.
+##Opdracht 1
 
-## Terraform
+### Terraform
 - `cd terraform`
 - `terraform init`
 - `terraform apply -auto-approve`
 - Daarna staat de VM klaar en wordt automatisch een `inventory.ini` gemaakt voor Ansible.
 
-## Ansible
+### Ansible
 - Test verbinding:  
   ```bash
   ansible -i inventory.ini all -m ping
+
+##Opdracht 2
+Run het playbook:
+```bash
+ansible-playbook -i inventory.ini playbooks/02_variables.yml
+
+- Commit en push als je README aanpast:
+```bash
+git add README.md
+git commit -m "Opdracht 2: instructies toegevoegd aan README"
+git push
