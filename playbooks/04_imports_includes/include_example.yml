@@ -1,0 +1,5 @@
+---
+- name: Include voorbeeld
+  debug:
+    msg: "Deze taak is via include_tasks toegevoegd"
+

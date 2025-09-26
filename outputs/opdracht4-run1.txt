@@ -1,0 +1,9 @@
+
+PLAY [Demo van imports, includes en role] **************************************
+
+TASK [Gathering Facts] *********************************************************
+fatal: [vm-les03]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 192.168.1.105 port 22: Connection timed out", "unreachable": true}
+
+PLAY RECAP *********************************************************************
+vm-les03                   : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+
