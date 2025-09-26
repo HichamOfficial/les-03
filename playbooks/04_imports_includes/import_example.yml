@@ -1,0 +1,4 @@
+---
+- name: Import voorbeeld
+  debug:
+    msg: "Deze taak is via import_tasks toegevoegd"

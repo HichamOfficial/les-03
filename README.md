@@ -48,3 +48,31 @@ In deze opdracht heb ik een playbook gemaakt [03_conditionals.yml](playbooks/03_
 ### Resultaat
 - Eerste run: er wordt een testbestand gemaakt en je ziet `changed=1`. Zie [opdracht3-run1.txt](outputs/opdracht3-run1.txt).
 - Tweede run: alles is al gedaan, er verandert niks meer en je ziet `changed=0`. Zie [opdracht3-run2.txt](outputs/opdracht3-run2.txt).
+
+## Opdracht 4 — Includes, Imports & Roles
+
+### Werking
+In deze opdracht is een nieuw playbook `site.yaml` gemaakt.  
+Dit playbook laat zien hoe je taken kunt opsplitsen en hergebruiken:
+
+- **import_tasks**  
+  Taken worden al bij het inlezen van het playbook vastgezet.  
+  Handig voor statische taken die niet dynamisch hoeven te worden geladen.
+
+- **include_tasks**  
+  Taken worden pas geladen tijdens runtime.  
+  Handig als je bijvoorbeeld voorwaarden wilt gebruiken (e.g. `when:`) of paden dynamisch wilt bepalen.
+
+Daarnaast is er een nieuwe role `role_firewall` toegevoegd.  
+Deze role installeert en configureert UFW en zorgt dat poort **8080** (en SSH) openstaat.
+
+### Waarom roles gebruiken
+Roles zorgen ervoor dat je playbooks overzichtelijk blijven:
+- Je kunt makkelijk hergebruik maken in meerdere projecten.
+- Bestanden worden logisch gestructureerd (`tasks/main.yml`, `vars/`, `templates/`).
+- Het wordt eenvoudiger voor teamleden om de playbooks te begrijpen en uit te breiden.
+
+### Testen
+Playbook draaien:
+```bash
+ansible-playbook -i inventory.ini site.yaml

@@ -1,0 +1,17 @@
+---
+- name: Installeer UFW
+  apt:
+    name: ufw
+    state: present
+    update_cache: yes
+
+- name: Zet UFW aan
+  ufw:
+    state: enabled
+    policy: allow
+
+- name: Zet poort 8080 open
+  ufw:
+    rule: allow
+    port: 8080
+    proto: tcp

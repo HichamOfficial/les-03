@@ -1,0 +1,31 @@
+
+PLAY [Demo van imports, includes en role] **************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [vm-les03]
+
+TASK [role_firewall : Installeer UFW] ******************************************
+ok: [vm-les03]
+
+TASK [role_firewall : Sta poort 8080 toe] **************************************
+changed: [vm-les03]
+
+TASK [role_firewall : Activeer UFW] ********************************************
+changed: [vm-les03]
+
+TASK [Import voorbeeld] ********************************************************
+ok: [vm-les03] => {
+    "msg": "Deze taak is via import_tasks toegevoegd"
+}
+
+TASK [Taken includen] **********************************************************
+included: /mnt/c/Users/Student/Documents/GitHub/les-03/playbooks/04_imports_includes/include_example.yml for vm-les03
+
+TASK [Include voorbeeld] *******************************************************
+ok: [vm-les03] => {
+    "msg": "Deze taak is via include_tasks toegevoegd"
+}
+
+PLAY RECAP *********************************************************************
+vm-les03                   : ok=7    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+

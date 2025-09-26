@@ -1,0 +1,14 @@
+---
+- name: Demo van imports, includes en role
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Taken importeren
+      import_tasks: playbooks/04_imports_includes/import_example.yml
+
+    - name: Taken includen
+      include_tasks: playbooks/04_imports_includes/include_example.yml
+
+  roles:
+    - role_firewall
