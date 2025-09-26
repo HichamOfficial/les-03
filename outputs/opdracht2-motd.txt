@@ -1,0 +1,2 @@
+vm-les03 | CHANGED | rc=0 >>
+Welkom bij het lab
