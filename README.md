@@ -36,3 +36,15 @@ Facts: [opdracht2-facts.txt](outputs/opdracht2-facts.txt)
 
 Kernel: [opdracht2-kernel.txt](outputs/opdracht2-kernel.txt)
 
+## Opdracht 3 – Voorwaardelijke taken
+
+In deze opdracht heb ik een playbook gemaakt [03_conditionals.yml](playbooks/03_conditionals.yml) dat afhankelijk van de distributie andere taken uitvoert.
+
+- Als de server **Ubuntu** is, wordt een bericht getoond en wordt een testbestand gemaakt.
+- Als de server **Red Hat** zou zijn, wordt een ander bericht getoond.
+- Er wordt gecontroleerd of `/etc/hosts` bestaat. De taak kan falen als het bestand er niet is.
+- Er is ook een taak die `echo hallo` uitvoert maar **niet** als “changed” wordt gezien.
+
+### Resultaat
+- Eerste run: er wordt een testbestand gemaakt en je ziet `changed=1`. Zie [opdracht3-run1.txt](outputs/opdracht3-run1.txt).
+- Tweede run: alles is al gedaan, er verandert niks meer en je ziet `changed=0`. Zie [opdracht3-run2.txt](outputs/opdracht3-run2.txt).

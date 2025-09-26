@@ -1,0 +1,29 @@
+
+PLAY [Voorwaardelijke taken oefenen] *******************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [vm-les03]
+
+TASK [Dit wordt alleen gedaan als distributie Ubuntu is] ***********************
+ok: [vm-les03] => {
+    "msg": "Dit is een Ubuntu server"
+}
+
+TASK [Maak een testbestand als we Ubuntu zijn] *********************************
+changed: [vm-les03]
+
+TASK [Dit wordt alleen gedaan als distributie Red Hat is] **********************
+skipping: [vm-les03]
+
+TASK [Check of /etc/hosts bestaat] *********************************************
+ok: [vm-les03]
+
+TASK [Laat de taak falen als /etc/hosts niet bestaat] **************************
+skipping: [vm-les03]
+
+TASK [Echo hallo zonder changed status] ****************************************
+ok: [vm-les03]
+
+PLAY RECAP *********************************************************************
+vm-les03                   : ok=5    changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+

@@ -1,0 +1,35 @@
+---
+- name: Voorwaardelijke taken oefenen
+  hosts: all
+  gather_facts: yes
+
+  tasks:
+    - name: Dit wordt alleen gedaan als distributie Ubuntu is
+      debug:
+        msg: "Dit is een Ubuntu server"
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Maak een testbestand als we Ubuntu zijn
+      file:
+        path: /tmp/testbestand.txt
+        state: file
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Dit wordt alleen gedaan als distributie Red Hat is
+      debug:
+        msg: "Dit is een Red Hat server"
+      when: ansible_distribution == "RedHat"
+
+    - name: Check of /etc/hosts bestaat
+      stat:
+        path: /etc/hosts
+      register: hosts_file
+
+    - name: Laat de taak falen als /etc/hosts niet bestaat
+      fail:
+        msg: "/etc/hosts ontbreekt!"
+      when: not hosts_file.stat.exists
+
+    - name: Echo hallo zonder changed status
+      command: echo "hallo"
+      changed_when: false
