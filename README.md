@@ -17,9 +17,5 @@
 Run het playbook:
 ```bash
 ansible-playbook -i inventory.ini playbooks/02_variables.yml
+```
 
-- Commit en push als je README aanpast:
-```bash
-git add README.md
-git commit -m "Opdracht 2: instructies toegevoegd aan README"
-git push
