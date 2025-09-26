@@ -78,9 +78,9 @@ In deze opdracht heb ik laten zien hoe je Ansible-taken kunt opsplitsen en herge
   ```bash
   ansible-playbook -i inventory.ini site.yaml | tee outputs/opdracht4-run1.txt
 - Daarna in de VM gecontroleerd:
-```
-sudo ufw status
-```
+  ```
+  sudo ufw status
+  ```
 Output liet zien dat poort 8080 open is en de policy op allow staat.
 
  
