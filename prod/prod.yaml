@@ -1,0 +1,5 @@
+- name: Configureer database server
+  hosts: db
+  become: yes
+  roles:
+    - role_db

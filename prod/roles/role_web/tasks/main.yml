@@ -1,0 +1,41 @@
+---
+- name: Installeer nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Configureer indexpagina
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+
+- name: Pas nginx aan naar custom poort
+  lineinfile:
+    path: /etc/nginx/sites-available/default
+    regexp: 'listen 80 default_server;'
+    line: "listen {{ nginx_port }} default_server;"
+  notify: restart nginx
+
+- name: Installeer UFW
+  apt:
+    name: ufw
+    state: present
+    update_cache: yes
+
+- name: Zet UFW aan
+  ufw:
+    state: enabled
+    policy: allow
+
+- name: Zet poort {{ nginx_port }} open
+  ufw:
+    rule: allow
+    port: "{{ nginx_port }}"
+    proto: tcp
+
+- name: Zorg dat nginx draait
+  service:
+    name: nginx
+    state: started
+    enabled: yes
