@@ -51,28 +51,36 @@ In deze opdracht heb ik een playbook gemaakt [03_conditionals.yml](playbooks/03_
 
 ## Opdracht 4 — Includes, Imports & Roles
 
-### Werking
-In deze opdracht is een nieuw playbook `site.yaml` gemaakt.  
-Dit playbook laat zien hoe je taken kunt opsplitsen en hergebruiken:
+In deze opdracht heb ik laten zien hoe je Ansible-taken kunt opsplitsen en hergebruiken.
 
-- **import_tasks**  
-  Taken worden al bij het inlezen van het playbook vastgezet.  
-  Handig voor statische taken die niet dynamisch hoeven te worden geladen.
+### Wat ik heb gedaan
+- **Nieuwe branch:** `tasks` gemaakt voor deze opdracht.
+- **Imports & includes:**  
+  - In [`site.yaml`](site.yaml) gebruik ik [`import_tasks`](playbooks/04_imports_includes/import_example.yml) om taken in te laden bij het starten van het playbook.  
+  - Ik gebruik ook [`include_tasks`](playbooks/04_imports_includes/include_example.yml) om dynamisch taken toe te voegen tijdens runtime.  
+- **Role:**  
+  - De role [`role_firewall`](roles/role_firewall/tasks/main.yml) aangemaakt.  
+  - Deze installeert **UFW**, zet de **policy op allow**, en opent **poort 8080**.  
+  - UFW wordt daarna geactiveerd.
+- **Playbook:** [`site.yaml`](site.yaml) voert de imports, includes en de firewall-role uit op de VM.
 
-- **include_tasks**  
-  Taken worden pas geladen tijdens runtime.  
-  Handig als je bijvoorbeeld voorwaarden wilt gebruiken (e.g. `when:`) of paden dynamisch wilt bepalen.
+### Verschil `import_tasks` en `include_tasks`
+- [`import_tasks`](playbooks/04_imports_includes/import_example.yml): wordt al bij het inladen van het playbook verwerkt. Taken zijn dus vooraf bekend en zichtbaar in de “task list”.
+- [`include_tasks`](playbooks/04_imports_includes/include_example.yml): wordt pas tijdens runtime geladen. Handig als je taken alleen soms wilt draaien (bijv. met `when`-condities of variabelen).
 
-Daarnaast is er een nieuwe role `role_firewall` toegevoegd.  
-Deze role installeert en configureert UFW en zorgt dat poort **8080** (en SSH) openstaat.
+### Waarom roles handig zijn
+- Scheiden van logica per onderdeel (firewall, webserver, database, etc.).
+- Code herbruikbaar en overzichtelijk.
+- Makkelijk om later uit te breiden of met Ansible Galaxy te delen.
 
-### Waarom roles gebruiken
-Roles zorgen ervoor dat je playbooks overzichtelijk blijven:
-- Je kunt makkelijk hergebruik maken in meerdere projecten.
-- Bestanden worden logisch gestructureerd (`tasks/main.yml`, `vars/`, `templates/`).
-- Het wordt eenvoudiger voor teamleden om de playbooks te begrijpen en uit te breiden.
+### Test
+- Playbook gedraaid met:
+  ```bash
+  ansible-playbook -i inventory.ini site.yaml | tee outputs/opdracht4-run1.txt
+- Daarna in de VM gecontroleerd:
+  ```
+  sudo ufw status
+  ```
+Output liet zien dat poort 8080 open is en de policy op allow staat.
 
-### Testen
-Playbook draaien:
-```bash
-ansible-playbook -i inventory.ini site.yaml
+ 
