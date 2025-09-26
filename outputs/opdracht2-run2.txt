@@ -1,0 +1,24 @@
+
+PLAY [Variabelen oefenen] ******************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [vm-les03]
+
+TASK [Zet MOTD tekst] **********************************************************
+ok: [vm-les03]
+
+TASK [Maak app.conf met app_name uit inventory] ********************************
+ok: [vm-les03]
+
+TASK [Haal kernel versie op] ***************************************************
+changed: [vm-les03]
+
+TASK [Sla kernel versie op in /tmp/kernel.txt] *********************************
+ok: [vm-les03]
+
+TASK [Sla distributienaam op in /tmp/facts.txt] ********************************
+ok: [vm-les03]
+
+PLAY RECAP *********************************************************************
+vm-les03                   : ok=6    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
