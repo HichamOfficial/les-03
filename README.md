@@ -16,6 +16,7 @@
 ## Opdracht 2
 Run het playbook:
 ```bash
-ansible-playbook -i inventory.ini playbooks/02_variables.yml
+ansible-playbook -i inventory.ini
 ```
+De output van deze commando kan je vinden in [inventory.ini](inventory.ini).
 
