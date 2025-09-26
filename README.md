@@ -1,6 +1,6 @@
 # Les 03 — Infra + Ansible
 
-##Opdracht 1
+## Opdracht 1
 
 ### Terraform
 - `cd terraform`
@@ -13,7 +13,7 @@
   ```bash
   ansible -i inventory.ini all -m ping
 
-##Opdracht 2
+## Opdracht 2
 Run het playbook:
 ```bash
 ansible-playbook -i inventory.ini playbooks/02_variables.yml
