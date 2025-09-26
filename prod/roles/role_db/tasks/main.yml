@@ -1,0 +1,36 @@
+---
+- name: Installeer MariaDB server
+  apt:
+    name: mariadb-server
+    state: present
+    update_cache: yes
+  become: true
+
+- name: Zorg dat MariaDB draait en opstart bij boot
+  service:
+    name: mariadb
+    state: started
+    enabled: true
+  become: true
+
+- name: Installeer python3-PyMySQL (nodig voor mysql_* modules)
+  apt:
+    name: python3-pymysql
+    state: present
+    update_cache: yes
+  become: true
+
+- name: Stel root wachtwoord in voor MariaDB
+  mysql_user:
+    name: root
+    host: localhost
+    password: "Welkom01!"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  become: true
+
+- name: Maak database aan
+  mysql_db:
+    name: myapp
+    login_user: root
+    login_password: "Welkom01!"
+  become: true
